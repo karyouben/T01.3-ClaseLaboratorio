@@ -82,10 +82,41 @@ public class EstudianteImpl implements Estudiante {
 		this.puntos += puntosAdicionales;
 	}
 	
+	public boolean equals(Object o) {
+		boolean res = false;
+		// e1.equals("Hola")
+		// e6.equals(e7)		
+		if (o instanceof Estudiante) {
+			Estudiante e = (Estudiante) o;
+			res = getUVUS().equals(e.getUVUS()) && 
+					getApellidos().equals(e.getApellidos()) &&
+					  getNombre().equals(e.getNombre());				}
+		return res;
+	}
+	
+	
+	public int hashCode() {
+		return getUVUS().hashCode() + 31*getApellidos().hashCode() 
+				+ 31*31*getNombre().hashCode();
+	}
+	
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
 		return getApellidos()+"," + getNombre()+" - " + getUVUS()+ "- Puntos:" + getPuntos();
+	}
+	
+	public int compareTo(Estudiante e) {
+		int res = getApellidos().compareTo(e.getApellidos()); // inverso -> e.getApellidos().compareTo(getApellidos())
+		if (res == 0) {
+			res = getNombre().compareTo(e.getNombre());
+			if (res==0) {
+				res = getUVUS().compareTo(e.getUVUS());
+			}
+				
+		}
+		return res;
 	}
 }

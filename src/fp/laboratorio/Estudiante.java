@@ -44,5 +44,6 @@ public interface Estudiante {
 	 * Añade los puntos dados por el parámetro puntosAdicionales a los puntos que ya tiene el estudiante.
 	 */
 	void sumarPuntos(Double puntosAdicionales);
+	int compareTo(Estudiante e);
 	
 }
